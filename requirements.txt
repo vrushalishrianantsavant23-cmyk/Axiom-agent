@@ -1,12 +1,12 @@
-fastapi
+fastapi==0.141.1
 uvicorn[standard]
 google-genai
-langgraph
+langgraph==1.2.10
 pyyaml==6.0.1
-crewai
-chromadb
-sentence-transformers
-pydantic
+crewai==1.15.10
+chromadb==1.1.1
+sentence-transformers==5.6.1
+pydantic==2.12.5
 python-dotenv
 pypdf
 python-multipart
@@ -14,4 +14,4 @@ streamlit
 requests
 pytest
 httpx
-groq
+groq#

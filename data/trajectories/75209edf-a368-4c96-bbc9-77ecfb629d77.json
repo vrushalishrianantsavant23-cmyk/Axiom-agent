@@ -1,0 +1,43 @@
+{
+  "query_id": "75209edf-a368-4c96-bbc9-77ecfb629d77",
+  "query": "Summarize it for me",
+  "timestamp": "2026-08-04T11:00:21.561672+00:00",
+  "moderation": {
+    "blocked": false,
+    "status": "allowed",
+    "reason": "Query passed safety review."
+  },
+  "evidence": [
+    {
+      "text": "unacademy.com | Download the Unacademy app LOK SABHA unacademy.com | Download the Unacademy app unacademy.com | Download the Unacademy app \u0932\u094b\u0915 \u0938\u092d\u093e unacademy.com | Download the Unacademy app",
+      "source": "1 August_Lok Sabha.pdf"
+    }
+  ],
+  "retrieved_sources": [
+    "1 August_Lok Sabha.pdf"
+  ],
+  "sampled_responses": [
+    "The provided content appears to be repetitive advertisements for the Unacademy app, with mentions of \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, a term often used to refer to the lower house of the Parliament of India. However, there is no substantial information or context in the given content that can be summarized. It seems to be a promotional material rather than informative content.",
+    "The provided content appears to be repetitive advertisements for the Unacademy app, with mentions of \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People in the Indian Parliament. There is no substantial information or meaningful content to summarize beyond the promotion of the Unacademy app.",
+    "The provided text appears to be repetitive and primarily consists of a URL and a call to action to download the Unacademy app, with some text in Hindi that translates to \"Lok Sabha,\" which refers to the lower house of India's parliament. However, there is no substantial content to summarize. It seems like an advertisement or a promotional message rather than informative text.",
+    "The provided text appears to be a repetitive advertisement for the Unacademy app, mentioning \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, a term often used to refer to the lower house of the Parliament of India. However, there's no substantial content to summarize beyond this being an ad.",
+    "The provided content appears to be a repetitive advertisement for the Unacademy app, mentioning \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, referring to the lower house of India's Parliament. However, there is no substantial information or context provided beyond the advertisement. If you're looking for information on the Lok Sabha or Unacademy, I can provide more general information on those topics."
+  ],
+  "semantic_entropy_score": 0.0,
+  "uncertainty": {
+    "sampled_responses": [
+      "The provided content appears to be repetitive advertisements for the Unacademy app, with mentions of \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, a term often used to refer to the lower house of the Parliament of India. However, there is no substantial information or context in the given content that can be summarized. It seems to be a promotional material rather than informative content.",
+      "The provided content appears to be repetitive advertisements for the Unacademy app, with mentions of \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People in the Indian Parliament. There is no substantial information or meaningful content to summarize beyond the promotion of the Unacademy app.",
+      "The provided text appears to be repetitive and primarily consists of a URL and a call to action to download the Unacademy app, with some text in Hindi that translates to \"Lok Sabha,\" which refers to the lower house of India's parliament. However, there is no substantial content to summarize. It seems like an advertisement or a promotional message rather than informative text.",
+      "The provided text appears to be a repetitive advertisement for the Unacademy app, mentioning \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, a term often used to refer to the lower house of the Parliament of India. However, there's no substantial content to summarize beyond this being an ad.",
+      "The provided content appears to be a repetitive advertisement for the Unacademy app, mentioning \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, referring to the lower house of India's Parliament. However, there is no substantial information or context provided beyond the advertisement. If you're looking for information on the Lok Sabha or Unacademy, I can provide more general information on those topics."
+    ],
+    "num_clusters": 1,
+    "semantic_entropy_score": 0.0,
+    "confidence": 1.0,
+    "is_consistent": true,
+    "majority_answer": "The provided content appears to be repetitive advertisements for the Unacademy app, with mentions of \"LOK SABHA\" which is Hindi for \"Lower House\" or the House of the People, a term often used to refer to the lower house of the Parliament of India. However, there is no substantial information or context in the given content that can be summarized. It seems to be a promotional material rather than informative content."
+  },
+  "contested_topic": false,
+  "crew_error": "litellm.BadRequestError: GroqException - {\"error\":{\"message\":\"'messages.0' : for 'role:system' the following must be satisfied[('messages.0' : property 'cache_breakpoint' is unsupported)]\",\"type\":\"invalid_request_error\"}}\n"
+}

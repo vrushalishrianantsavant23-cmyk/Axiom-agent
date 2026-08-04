@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+google-genai
+langgraph
+pyyaml==6.0.1
+crewai
+chromadb
+sentence-transformers
+pydantic
+python-dotenv
+pypdf
+python-multipart
+streamlit
+requests
+pytest
+httpx
+groq

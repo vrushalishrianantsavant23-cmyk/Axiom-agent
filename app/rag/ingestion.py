@@ -1,0 +1,79 @@
+import uuid
+import chromadb
+
+from app.config import CHROMA_PATH, EMBEDDING_MODEL
+
+_client = None
+_embedder = None
+
+
+def get_chroma_client():
+    global _client
+    if _client is None:
+        _client = chromadb.PersistentClient(path=CHROMA_PATH)
+    return _client
+
+
+def get_embedder():
+    global _embedder
+    if _embedder is None:
+        from sentence_transformers import SentenceTransformer
+        _embedder = SentenceTransformer(EMBEDDING_MODEL)
+    return _embedder
+
+
+def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> list:
+    words = text.split()
+    if not words:
+        return []
+    chunks = []
+    i = 0
+    step = max(chunk_size - overlap, 1)
+    while i < len(words):
+        chunk = " ".join(words[i:i + chunk_size])
+        if chunk.strip():
+            chunks.append(chunk)
+        i += step
+    return chunks
+
+
+def extract_text(file_path: str) -> str:
+    if file_path.lower().endswith(".pdf"):
+        from pypdf import PdfReader
+        reader = PdfReader(file_path)
+        text = "\n".join([page.extract_text() or "" for page in reader.pages])
+
+        # If barely any real text was extracted, the PDF is likely scanned/image-based.
+        # Fall back to OCR.
+        if len(text.strip()) < 100:
+            try:
+                from pdf2image import convert_from_path
+                import pytesseract
+                images = convert_from_path(file_path)
+                ocr_text = "\n".join(pytesseract.image_to_string(img) for img in images)
+                if len(ocr_text.strip()) > len(text.strip()):
+                    text = ocr_text
+            except Exception:
+                pass
+
+        return text
+    with open(file_path, "r", errors="ignore") as f:
+        return f.read()
+
+
+def ingest_document(file_path: str, doc_name: str) -> dict:
+    text = extract_text(file_path)
+    chunks = chunk_text(text)
+    if not chunks:
+        return {"status": "error", "message": "No text could be extracted from this document."}
+
+    client = get_chroma_client()
+    collection = client.get_or_create_collection("documents")
+    embedder = get_embedder()
+
+    embeddings = embedder.encode(chunks).tolist()
+    ids = [str(uuid.uuid4()) for _ in chunks]
+    metadatas = [{"source": doc_name, "chunk_index": i} for i in range(len(chunks))]
+
+    collection.add(ids=ids, embeddings=embeddings, documents=chunks, metadatas=metadatas)
+    return {"status": "success", "chunks_added": len(chunks), "document": doc_name}

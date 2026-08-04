@@ -1,0 +1,53 @@
+{
+  "query_id": "df1781ab-e122-468b-9291-d965eec690a7",
+  "query": "Summarize it bhai",
+  "timestamp": "2026-08-04T06:31:15.151104+00:00",
+  "moderation": {
+    "blocked": false,
+    "status": "allowed",
+    "reason": "Query passed safety review."
+  },
+  "sampled_responses": [
+    "When explaining a term, cover **all** its common meanings from different fields, like networking, AI, databases, etc., without skipping any, even if it's less traditional or newer.",
+    "When explaining a term, cover **all** its common meanings across different fields, like networking, AI, databases, etc. Don't leave out any major or well-known meaning, even if it's new or less traditional.",
+    "When explaining a term, cover **all** its common meanings from different fields, like networking, AI, databases, etc., without leaving any out, even if they're new or less traditional.",
+    "Bhai, it means that when a word or term has multiple meanings in different fields like networking, AI, databases, etc., we should list all the common meanings, without leaving out any important ones, even if they are new or less traditional.",
+    "Bhai, it means that when a term has multiple meanings in different fields like networking, AI, databases, etc., we should list all the common meanings without skipping any, even if it's less traditional or new."
+  ],
+  "semantic_entropy_score": 0.418,
+  "uncertainty": {
+    "sampled_responses": [
+      "When explaining a term, cover **all** its common meanings from different fields, like networking, AI, databases, etc., without skipping any, even if it's less traditional or newer.",
+      "When explaining a term, cover **all** its common meanings across different fields, like networking, AI, databases, etc. Don't leave out any major or well-known meaning, even if it's new or less traditional.",
+      "When explaining a term, cover **all** its common meanings from different fields, like networking, AI, databases, etc., without leaving any out, even if they're new or less traditional.",
+      "Bhai, it means that when a word or term has multiple meanings in different fields like networking, AI, databases, etc., we should list all the common meanings, without leaving out any important ones, even if they are new or less traditional.",
+      "Bhai, it means that when a term has multiple meanings in different fields like networking, AI, databases, etc., we should list all the common meanings without skipping any, even if it's less traditional or new."
+    ],
+    "num_clusters": 2,
+    "semantic_entropy_score": 0.418,
+    "confidence": 0.582,
+    "is_consistent": false,
+    "majority_answer": "When explaining a term, cover **all** its common meanings from different fields, like networking, AI, databases, etc., without skipping any, even if it's less traditional or newer."
+  },
+  "evidence": [
+    {
+      "text": "unacademy.com | Download the Unacademy app LOK SABHA unacademy.com | Download the Unacademy app unacademy.com | Download the Unacademy app \u0932\u094b\u0915 \u0938\u092d\u093e unacademy.com | Download the Unacademy app",
+      "source": "1 August_Lok Sabha.pdf"
+    },
+    {
+      "text": "unacademy.com | Download the Unacademy app LOK SABHA unacademy.com | Download the Unacademy app unacademy.com | Download the Unacademy app \u0932\u094b\u0915 \u0938\u092d\u093e unacademy.com | Download the Unacademy app",
+      "source": "1 August_Lok Sabha.pdf"
+    },
+    {
+      "text": "unacademy.com | Download the Unacademy app LOK SABHA unacademy.com | Download the Unacademy app unacademy.com | Download the Unacademy app \u0932\u094b\u0915 \u0938\u092d\u093e unacademy.com | Download the Unacademy app",
+      "source": "1 August_Lok Sabha.pdf"
+    }
+  ],
+  "retrieved_sources": [
+    "1 August_Lok Sabha.pdf",
+    "1 August_Lok Sabha.pdf",
+    "1 August_Lok Sabha.pdf"
+  ],
+  "contested_topic": false,
+  "crew_error": "litellm.BadRequestError: GroqException - {\"error\":{\"message\":\"'messages.0' : for 'role:system' the following must be satisfied[('messages.0' : property 'cache_breakpoint' is unsupported)]\",\"type\":\"invalid_request_error\"}}\n"
+}

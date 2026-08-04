@@ -1,7 +1,10 @@
 import streamlit as st
 import requests
+import os
 
-API_BASE = "http://localhost:8000"
+API_BASE = os.environ.get("BACKEND_URL", "http://localhost:8000")
+
+
 
 st.set_page_config(page_title="Axiom-Agent", page_icon="🔎", layout="centered")
 

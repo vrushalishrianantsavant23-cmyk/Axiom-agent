@@ -25,6 +25,7 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         backstory="A meticulous researcher who cross-checks every claim against sources before accepting it.",
         llm=llm,
         verbose=False,
+        cache=False,
     )
     skeptic = Agent(
         role="Skeptic",
@@ -32,6 +33,7 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         backstory="A critical thinker who assumes claims are wrong until proven otherwise.",
         llm=llm,
         verbose=False,
+        cache=False,
     )
     judge = Agent(
         role="Judge",
@@ -42,6 +44,7 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         ),
         llm=llm,
         verbose=False,
+        cache=False,
     )
 
     fact_check_task = Task(

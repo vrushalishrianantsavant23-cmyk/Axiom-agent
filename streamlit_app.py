@@ -5,7 +5,6 @@ import os
 API_BASE = os.environ.get("BACKEND_URL", "http://localhost:8000")
 
 
-
 st.set_page_config(page_title="Axiom-Agent", page_icon="🔎", layout="centered")
 
 st.title("🔎 Axiom-Agent")
@@ -67,7 +66,7 @@ with tab1:
 
         with st.spinner("Verifying... (sampling responses + multi-agent check)"):
             try:
-                resp = requests.post(f"{API_BASE}/verify", json={"query": full_query}, timeout=120)
+                resp = requests.post(f"{API_BASE}/verify", json={"query": full_query}, timeout=300)
                 data = resp.json()
             except Exception as e:
                 st.error(f"Could not reach the backend: {e}")

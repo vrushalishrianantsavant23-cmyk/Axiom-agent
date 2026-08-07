@@ -1,10 +1,11 @@
 import uuid
 import chromadb
+from chromadb.utils import embedding_functions
 
-from app.config import CHROMA_PATH, EMBEDDING_MODEL
+from app.config import CHROMA_PATH
 
 _client = None
-_embedder = None
+_embedding_fn = None
 
 
 def get_chroma_client():
@@ -14,12 +15,16 @@ def get_chroma_client():
     return _client
 
 
-def get_embedder():
-    global _embedder
-    if _embedder is None:
-        from sentence_transformers import SentenceTransformer
-        _embedder = SentenceTransformer(EMBEDDING_MODEL)
-    return _embedder
+def get_embedding_fn():
+    global _embedding_fn
+    if _embedding_fn is None:
+        _embedding_fn = embedding_functions.ONNXMiniLM_L6_V2()
+    return _embedding_fn
+
+
+def get_collection():
+    client = get_chroma_client()
+    return client.get_or_create_collection("documents", embedding_function=get_embedding_fn())
 
 
 def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> list:
@@ -43,8 +48,6 @@ def extract_text(file_path: str) -> str:
         reader = PdfReader(file_path)
         text = "\n".join([page.extract_text() or "" for page in reader.pages])
 
-        # If barely any real text was extracted, the PDF is likely scanned/image-based.
-        # Fall back to OCR.
         if len(text.strip()) < 100:
             try:
                 from pdf2image import convert_from_path
@@ -67,13 +70,9 @@ def ingest_document(file_path: str, doc_name: str) -> dict:
     if not chunks:
         return {"status": "error", "message": "No text could be extracted from this document."}
 
-    client = get_chroma_client()
-    collection = client.get_or_create_collection("documents")
-    embedder = get_embedder()
-
-    embeddings = embedder.encode(chunks).tolist()
+    collection = get_collection()
     ids = [str(uuid.uuid4()) for _ in chunks]
     metadatas = [{"source": doc_name, "chunk_index": i} for i in range(len(chunks))]
 
-    collection.add(ids=ids, embeddings=embeddings, documents=chunks, metadatas=metadatas)
+    collection.add(ids=ids, documents=chunks, metadatas=metadatas)
     return {"status": "success", "chunks_added": len(chunks), "document": doc_name}

@@ -14,7 +14,6 @@ from groq import Groq
 from app.config import (
     GROQ_API_KEY,
     GROQ_MODEL,
-    EMBEDDING_MODEL,
     SIMILARITY_THRESHOLD,
     NUM_SAMPLES,
     SAMPLE_TEMPERATURE,
@@ -34,8 +33,8 @@ def get_client():
 def get_embedder():
     global _embedder
     if _embedder is None:
-        from sentence_transformers import SentenceTransformer
-        _embedder = SentenceTransformer(EMBEDDING_MODEL)
+        from chromadb.utils import embedding_functions
+        _embedder = embedding_functions.ONNXMiniLM_L6_V2()
     return _embedder
 
 
@@ -87,7 +86,7 @@ def cluster_responses(responses: list) -> list:
         return []
 
     embedder = get_embedder()
-    embeddings = embedder.encode(valid)
+    embeddings = np.array(embedder(valid))
 
     clusters = []
     assigned = [False] * len(valid)

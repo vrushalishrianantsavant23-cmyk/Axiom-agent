@@ -1,18 +1,13 @@
-from app.rag.ingestion import get_chroma_client, get_embedder
+from app.rag.ingestion import get_collection
 
 
 def retrieve_evidence(query: str, top_k: int = 10) -> list:
-    """Fetch top-k supporting evidence chunks for a query. Returns [] gracefully
-    if no documents have been ingested yet."""
     try:
-        client = get_chroma_client()
-        collection = client.get_or_create_collection("documents")
+        collection = get_collection()
         if collection.count() == 0:
             return []
-        embedder = get_embedder()
-        query_embedding = embedder.encode([query]).tolist()
         results = collection.query(
-            query_embeddings=query_embedding,
+            query_texts=[query],
             n_results=min(top_k, collection.count()),
         )
         docs = results.get("documents", [[]])[0]

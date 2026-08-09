@@ -1,6 +1,12 @@
 import os
 import litellm
 litellm.drop_params = True
+
+# --- Workaround for CrewAI bug #5886: cache_breakpoint injected for non-Anthropic providers ---
+import crewai.llms.cache as _crewai_cache
+_crewai_cache.mark_cache_breakpoint = lambda msg: msg
+# -----------------------------------------------------------------------------------------------
+
 from crewai import Agent, Task, Crew, Process, LLM
 
 from app.config import GROQ_API_KEY, GROQ_MODEL
@@ -89,7 +95,14 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         verbose=False,
     )
 
-    result = crew.kickoff()
+    try:
+        result = crew.kickoff()
+    except Exception as e:
+        return {
+            "fact_check": str(fact_check_task.output) if fact_check_task.output else "",
+            "skeptic_review": str(skeptic_task.output) if skeptic_task.output else "",
+            "final_verdict": f"Verification failed due to an internal error: {e}",
+        }
 
     return {
         "fact_check": str(fact_check_task.output) if fact_check_task.output else "",

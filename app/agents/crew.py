@@ -41,17 +41,22 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         verbose=False,
         cache=False,
     )
-    judge = Agent(
-        role="Judge",
-        goal="Synthesize the fact-checker and skeptic findings into one final, neutral verdict.",
-        backstory=(
-            "An impartial judge who values balance. On contested or subjective "
-            "topics, presents multiple perspectives instead of a single one-sided verdict."
-        ),
-        llm=llm,
-        verbose=False,
-        cache=False,
-    )
+    judge_task = Task(
+    description=(
+        f"Claim/Question: {query}\n"
+        f"Draft answer: {majority_answer}\n\n"
+        "Using the fact-checker's and skeptic's findings, write a final answer "
+        "to the original question, formatted as 3-6 concise bullet points "
+        "(use '- ' at the start of each line). If the topic is contested or "
+        "subjective, use separate bullet points to present each distinct "
+        "perspective, clearly labeled. Do not write in paragraph form. "
+        "Do not describe your process — just give the bulleted answer."
+    ),
+    expected_output="A final, bullet-point answer to the original question, "
+                     "with each point on its own line starting with '- '.",
+    agent=judge,
+    context=[fact_check_task, skeptic_task],
+)
 
     fact_check_task = Task(
         description=(

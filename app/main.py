@@ -3,10 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import health, verify, adversarial, ingest, trajectory
 
+
 app = FastAPI(
     title="Axiom-Agent",
     description="Self-verifying agentic AI system for claim and document fact-checking.",
 )
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 app.add_middleware(
     CORSMiddleware,

@@ -69,7 +69,7 @@ with tab1:
             with st.spinner("Reading document..."):
                 try:
                     files = {"file": (uploaded.name, uploaded.getvalue())}
-                    resp = requests.post(f"{API_BASE}/ingest", files=files, timeout=60)
+                    resp = requests.post(f"{API_BASE}/ingest", files=files, timeout=120)
                     data = resp.json()
                     if data.get("status") == "success":
                         st.session_state.uploaded_doc = uploaded.name

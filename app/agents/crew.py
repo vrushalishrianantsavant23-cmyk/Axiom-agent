@@ -73,15 +73,21 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         description=(
             f"Claim/Question: {query}\n"
             f"Draft answer: {majority_answer}\n\n"
-            "Using the fact-checker's and skeptic's findings, write a final answer "
-            "to the original question, formatted as 3-6 concise bullet points "
-            "(use '- ' at the start of each line). If the topic is contested or "
-            "subjective, use separate bullet points to present each distinct "
-            "perspective, clearly labeled. Do not write in paragraph form. "
-            "Do not describe your process — just give the bulleted answer."
+            "Using the fact-checker's and skeptic's findings as background context, write "
+            "ONE clear, direct, natural answer to the original question — the way a helpful "
+            "assistant like ChatGPT would answer. Do NOT write in a skeptical or "
+            "fact-checking tone, do NOT say things are 'unsupported' unless there is a "
+            "genuine factual problem with the answer. If the fact-checker and skeptic found "
+            "no real issues, just give the straightforward, confident answer. Only mention "
+            "uncertainty or lack of evidence if the fact-checker/skeptic raised a genuine, "
+            "substantive concern — not for well-established facts like basic math or common "
+            "knowledge. If the topic is genuinely contested or subjective, briefly note the "
+            "different perspectives — otherwise just answer directly. Do not describe your "
+            "process — just give the answer, in normal prose (not bullet points unless the "
+            "question itself calls for a list)."
         ),
-        expected_output="A final, bullet-point answer to the original question, "
-                         "with each point on its own line starting with '- '.",
+        expected_output="A direct, natural, confident answer to the original question, "
+                         "written the way a helpful AI assistant would normally respond.",
         agent=judge,
         context=[fact_check_task, skeptic_task],
     )

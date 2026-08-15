@@ -10,6 +10,36 @@ st.set_page_config(page_title="Axiom-Agent", page_icon="🔎", layout="centered"
 st.title("🔎 Axiom-Agent")
 st.caption("Self-verifying AI for claim and document fact-checking")
 
+with st.container(border=True):
+    st.markdown("#### ℹ️ About this project")
+    st.markdown(
+        "Axiom-Agent verifies claims using multi-agent cross-checking "
+        "(fact-checker, skeptic, judge) and semantic-entropy-based uncertainty "
+        "estimation, grounded in retrieved evidence, with AI-based safety guardrails."
+    )
+
+    st.markdown("#### 🎯 Problem Statement")
+    st.markdown(
+        "Large Language Models often hallucinate — they generate plausible-sounding "
+        "but factually incorrect answers, and their self-reported confidence is "
+        "typically unreliable. Existing RAG chatbots reduce this by grounding answers "
+        "in evidence, but still produce a single-pass answer without independent "
+        "verification or a statistically grounded measure of uncertainty."
+    )
+
+    st.markdown("#### ✅ Objectives")
+    st.markdown(
+        "- Ground LLM answers in retrieved evidence (RAG) instead of relying on "
+        "parametric knowledge alone\n"
+        "- Quantify answer uncertainty using semantic entropy (Farquhar et al., "
+        "Nature, 2024) instead of LLM self-rated confidence\n"
+        "- Cross-verify claims using three independent agents: Fact-Checker, "
+        "Skeptic, and Judge\n"
+        "- Enforce safety guardrails against harmful or adversarial inputs\n"
+        "- Present multiple perspectives, not a single verdict, on contested or "
+        "subjective topics"
+    )
+
 tab1, tab2 = st.tabs(["💬 Ask Axiom-Agent", "⚔️ Adversarial Test"])
 
 with tab1:
@@ -113,11 +143,3 @@ with tab2:
                         st.success(f"✅ PASSED — {data.get('reason')}")
                 except Exception as e:
                     st.error(f"Could not reach the backend: {e}")
-
-with st.sidebar:
-    with st.expander("ℹ️ About this project"):
-        st.write(
-            "Axiom-Agent verifies claims using multi-agent cross-checking "
-            "(fact-checker, skeptic, judge) and semantic-entropy-based uncertainty "
-            "estimation, grounded in retrieved evidence, with AI-based safety guardrails."
-        )

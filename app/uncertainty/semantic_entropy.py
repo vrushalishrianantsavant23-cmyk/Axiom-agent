@@ -9,6 +9,7 @@ models using semantic entropy", Nature (2024).
 
 import math
 import numpy as np
+from concurrent.futures import ThreadPoolExecutor
 from groq import Groq
 
 from app.config import (
@@ -40,7 +41,6 @@ def get_embedder():
 
 def sample_responses(query: str, evidence_text: str = "", n: int = NUM_SAMPLES) -> list:
     client = get_client()
-    responses = []
     system_prompt = (
         "Answer the user's question directly and naturally, as a helpful, knowledgeable "
         "assistant would — the way ChatGPT or Claude would answer. "
@@ -62,7 +62,7 @@ def sample_responses(query: str, evidence_text: str = "", n: int = NUM_SAMPLES) 
             f"Question: {query}"
         )
 
-    for _ in range(n):
+    def _call_once(_):
         try:
             r = client.chat.completions.create(
                 model=GROQ_MODEL,
@@ -73,10 +73,12 @@ def sample_responses(query: str, evidence_text: str = "", n: int = NUM_SAMPLES) 
                 temperature=SAMPLE_TEMPERATURE,
                 max_tokens=1500,
             )
-            text = (r.choices[0].message.content or "").strip()
-            responses.append(text)
+            return (r.choices[0].message.content or "").strip()
         except Exception as e:
-            responses.append(f"[error: {str(e)}]")
+            return f"[error: {str(e)}]"
+
+    with ThreadPoolExecutor(max_workers=n) as executor:
+        responses = list(executor.map(_call_once, range(n)))
     return responses
 
 

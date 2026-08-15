@@ -7,6 +7,7 @@ from app.routes import health, verify, adversarial, ingest, trajectory
 app = FastAPI(
     title="Axiom-Agent",
     description="Self-verifying agentic AI system for claim and document fact-checking.",
+    lifespan=lifespan
 )
 @app.get("/health")
 def health_check():

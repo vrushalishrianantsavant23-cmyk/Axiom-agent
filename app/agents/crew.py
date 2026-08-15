@@ -2,10 +2,8 @@ import os
 import litellm
 litellm.drop_params = True
 
-# --- Workaround for CrewAI bug #5886: cache_breakpoint injected for non-Anthropic providers ---
 import crewai.llms.cache as _crewai_cache
 _crewai_cache.mark_cache_breakpoint = lambda msg: msg
-# -----------------------------------------------------------------------------------------------
 
 from crewai import Agent, Task, Crew, Process, LLM
 
@@ -41,22 +39,14 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         verbose=False,
         cache=False,
     )
-    judge_task = Task(
-    description=(
-        f"Claim/Question: {query}\n"
-        f"Draft answer: {majority_answer}\n\n"
-        "Using the fact-checker's and skeptic's findings, write a final answer "
-        "to the original question, formatted as 3-6 concise bullet points "
-        "(use '- ' at the start of each line). If the topic is contested or "
-        "subjective, use separate bullet points to present each distinct "
-        "perspective, clearly labeled. Do not write in paragraph form. "
-        "Do not describe your process — just give the bulleted answer."
-    ),
-    expected_output="A final, bullet-point answer to the original question, "
-                     "with each point on its own line starting with '- '.",
-    agent=judge,
-    context=[fact_check_task, skeptic_task],
-)
+    judge = Agent(
+        role="Judge",
+        goal="Deliver a final, balanced, user-facing verdict using the fact-checker and skeptic's findings.",
+        backstory="An impartial adjudicator who synthesizes conflicting inputs into one clear answer.",
+        llm=llm,
+        verbose=False,
+        cache=False,
+    )
 
     fact_check_task = Task(
         description=(
@@ -83,12 +73,15 @@ def run_verification_crew(query: str, majority_answer: str, evidence: list) -> d
         description=(
             f"Claim/Question: {query}\n"
             f"Draft answer: {majority_answer}\n\n"
-            "Using the fact-checker's and skeptic's findings, write ONE final, concise "
-            "answer (3-5 sentences max) to the original question. If the topic is "
-            "contested or subjective, briefly present multiple perspectives instead of "
-            "a single one-sided verdict. Do not describe your process — just give the answer."
+            "Using the fact-checker's and skeptic's findings, write a final answer "
+            "to the original question, formatted as 3-6 concise bullet points "
+            "(use '- ' at the start of each line). If the topic is contested or "
+            "subjective, use separate bullet points to present each distinct "
+            "perspective, clearly labeled. Do not write in paragraph form. "
+            "Do not describe your process — just give the bulleted answer."
         ),
-        expected_output="A final, concise, user-facing answer to the original question.",
+        expected_output="A final, bullet-point answer to the original question, "
+                         "with each point on its own line starting with '- '.",
         agent=judge,
         context=[fact_check_task, skeptic_task],
     )

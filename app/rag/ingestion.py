@@ -47,22 +47,9 @@ def extract_text(file_path: str) -> str:
         from pypdf import PdfReader
         reader = PdfReader(file_path)
         text = "\n".join([page.extract_text() or "" for page in reader.pages])
-
-        if len(text.strip()) < 100:
-            try:
-                from pdf2image import convert_from_path
-                import pytesseract
-                images = convert_from_path(file_path)
-                ocr_text = "\n".join(pytesseract.image_to_string(img) for img in images)
-                if len(ocr_text.strip()) > len(text.strip()):
-                    text = ocr_text
-            except Exception:
-                pass
-
         return text
     with open(file_path, "r", errors="ignore") as f:
         return f.read()
-
 
 def ingest_document(file_path: str, doc_name: str) -> dict:
     text = extract_text(file_path)

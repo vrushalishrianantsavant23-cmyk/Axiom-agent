@@ -9,8 +9,6 @@ tokenizers
 pydantic
 python-dotenv
 pypdf
-pdf2image
-pytesseract
 python-multipart
 streamlit
 requests

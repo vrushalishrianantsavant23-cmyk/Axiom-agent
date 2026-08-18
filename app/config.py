@@ -12,7 +12,7 @@ TRAJECTORY_PATH = os.path.join(BASE_DIR, "data", "trajectories")
 
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 SIMILARITY_THRESHOLD = 0.85
-NUM_SAMPLES = 3
+NUM_SAMPLES = 2
 SAMPLE_TEMPERATURE = 0.7
 
 os.makedirs(CHROMA_PATH, exist_ok=True)

@@ -65,7 +65,7 @@ def sample_responses(query: str, evidence_text: str = "", n: int = NUM_SAMPLES) 
                     {"role": "user", "content": user_content},
                 ],
                 temperature=SAMPLE_TEMPERATURE,
-                max_tokens=1500,
+                max_tokens=500,
             )
             return (r.choices[0].message.content or "").strip()
         except Exception as e:

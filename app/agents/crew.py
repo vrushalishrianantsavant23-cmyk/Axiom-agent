@@ -13,7 +13,7 @@ os.environ.setdefault("GROQ_API_KEY", GROQ_API_KEY)
 
 
 def get_llm():
-    return LLM(model=f"groq/{GROQ_MODEL}", api_key=GROQ_API_KEY, temperature=0.3)
+    return LLM(model=f"groq/{GROQ_MODEL}", api_key=GROQ_API_KEY, temperature=0.3, max_tokens=300)
 
 
 def run_verification_crew(query: str, majority_answer: str, evidence: list) -> dict:

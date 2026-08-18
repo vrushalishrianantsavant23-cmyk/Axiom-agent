@@ -1,0 +1,43 @@
+{
+  "query_id": "6aa29f87-e22e-4ab4-a4bc-d5891d72a2cf",
+  "query": "Previous question: summarize it\nPrevious answer: The document describes HireSphere, an AI-powered resume intelligence platform. It accepts resumes in PDF format, extracts information, and analyzes candidate skills using AI-based techniques. The system matches resumes with relevant job roles, identifies missing skills, and provides personalized recommendations, including courses and certifications. It also features a structured learning path and an AI-powered chatbot for user queries and career guidance. The platform is designed with non-functional requirements in mind, such as performance, scalability, reliability, security, usability, and maintainability. The system uses a Retrieval-Augmented Generation (RAG) job matching pipeline, which combines TF-IDF cosine similarity with keyword matching to ensure semantic similarity and concrete skill matching. Overall, HireSphere aims to bridge the gap between candidate competencies and employer expectations in the job market.\n\nNew question: Summarize it in short",
+  "timestamp": "2026-08-16T09:08:01.190968+00:00",
+  "moderation": {
+    "blocked": false,
+    "status": "allowed",
+    "reason": "Query passed safety review."
+  },
+  "evidence": [
+    {
+      "text": "through the intelligent application of modern AI technologies. The platform successfully integrates a multi-layered architecture encompassing PDF-based resume parsing using PyMuPDF, TF-IDF vectorization with cosine similarity for Retrieval-Augmented Generation (RAG) based job matching, a three-node LangGraph StateGraph for sequential agentic reasoning, and a multi-provider LLM fallback chain spanning Groq, Cohere, OpenAI, and HuggingFace \u2014 delivering a robust, production-ready career intelligence system. The experimental results validated the effectiveness of the hybrid scoring mechanism (60% keyword matching, 40% cosine similarity), which consistently produced intuitive and accurate job match rankings across diverse candidate profiles. The LangGraph agentic pipeline demonstrated reliable structured output generation \u2014 extracting skills, identifying gaps, and producing contextually appropriate career advice within a single pipeline invocation. The multi-LLM fallback architecture ensured high availability, maintaining chatbot functionality even under simulated provider failures, with graceful degradation across all four LLM tiers. All REST API endpoints were rigorously tested using Postman across happy-path, error-handling, and provider-failure scenarios, confirming the system's production readiness beyond the scope of typical academic prototypes. The containerized deployment using Docker Compose and Kubernetes manifests further validates the platform's scalability and operational maturity. From a broader perspective, HireSphere addresses a genuine and growing need in the job market \u2014 providing candidates with transparent, actionable, and personalized feedback that traditional Applicant Tracking Systems (ATS) fundamentally cannot offer. By combining semantic job matching, skill gap analysis, curated learning path recommendations, and an AI-powered career chatbot grounded in the candidate's actual resume data, the platform empowers users to make informed decisions about their career trajectories. In conclusion, HireSphere demonstrates that an end-to-end AI-driven career platform, when thoughtfully architected with modularity, fault tolerance, and user-centric design at its core, can meaningfully transform the job search experience for candidates across all experience levels and technical domains. 33 . 8. FUTURE SCOPE Several significant extensions are planned for future iterations: 1. Dense Vector Embeddings: Replacing TF-IDF with sentence-transformer models (e.g., all-MiniLM-L6-v2) stored in a persistent vector database (ChromaDB or Pinecone) for semantically richer job matching. This would enable the system to identify equivalent skills across different terminology (e.g., \"ML engineer\" and \"data scientist\" roles). 2. Resume Section Segmentation: Training a fine-tuned NER model to separate education, work experience, projects, and skills sections, enabling section-specific analysis and more granular feedback. This would allow for targeted recommendations like \"strengthen your project portfolio\" versus \"add more diverse work experience.\" 3. Live Job Market Integration: Connecting to job board APIs (LinkedIn, Indeed, Naukri) to perform matching against real, current job postings rather than a static corpus. This would enable trend analysis showing which skills are in highest demand and which roles are growing versus declining. 4. Resume Scoring and Rewriting: An LLM-powered module that generates specific, actionable resume rewrite suggestions for each job target. This would address common issues like weak action verbs, missing quantitative achievements, and formatting inconsistencies. 5. Interview Simulation: Integration of a voice-enabled interview simulation module using speech-to-text (Whisper API) and LLM-generated follow-up questioning. This would provide candidates with realistic practice for behavioral and technical interviews. 6.",
+      "source": "VRUSHALI_23STUCHH010296_Special Project Report.docx.pdf"
+    }
+  ],
+  "retrieved_sources": [
+    "VRUSHALI_23STUCHH010296_Special Project Report.docx.pdf"
+  ],
+  "sampled_responses": [
+    "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations.",
+    "HireSphere is an AI-powered resume intelligence platform that analyzes candidate skills, matches resumes with job roles, and provides personalized recommendations and career guidance.",
+    "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations."
+  ],
+  "semantic_entropy_score": 0.0,
+  "uncertainty": {
+    "sampled_responses": [
+      "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations.",
+      "HireSphere is an AI-powered resume intelligence platform that analyzes candidate skills, matches resumes with job roles, and provides personalized recommendations and career guidance.",
+      "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations."
+    ],
+    "num_clusters": 1,
+    "semantic_entropy_score": 0.0,
+    "confidence": 1.0,
+    "is_consistent": true,
+    "majority_answer": "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations."
+  },
+  "contested_topic": false,
+  "crew_output": {
+    "fact_check": "The draft answer is accurate as it correctly describes HireSphere as an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations. The evidence retrieved from the document supports this description, mentioning the use of AI technologies, PDF-based resume parsing, and Retrieval-Augmented Generation (RAG) based job matching. The draft answer effectively condenses the main functionality of HireSphere into a concise summary.",
+    "skeptic_review": "The draft answer accurately captures the essence of HireSphere's functionality, correctly identifying it as an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations. The description aligns with the details provided in the document, which outlines the platform's use of AI technologies and its job matching capabilities. The answer is solid and effectively condenses the main points into a concise summary.",
+    "final_verdict": "HireSphere is an AI-powered platform that analyzes resumes, matches candidates with job roles, and provides personalized career guidance and recommendations."
+  }
+}

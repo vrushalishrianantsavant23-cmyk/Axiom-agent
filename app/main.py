@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import health, verify, adversarial, ingest, trajectory
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Pre-load heavy models once at startup, so requests don't reload them
@@ -19,7 +18,6 @@ async def lifespan(app: FastAPI):
 
     yield
     # (nothing needed on shutdown)
-
 
 app = FastAPI(
     title="Axiom-Agent",

@@ -1,0 +1,43 @@
+{
+  "query_id": "b3c32372-f5a1-41c1-b7ac-b256d476ca66",
+  "query": "Summarize it",
+  "timestamp": "2026-08-16T07:05:51.431871+00:00",
+  "moderation": {
+    "blocked": false,
+    "status": "allowed",
+    "reason": "Query passed safety review."
+  },
+  "evidence": [
+    {
+      "text": "unacademy.com | Download the Unacademy app AUKUS unacademy.com | Download the Unacademy app unacademy.com | Download the Unacademy app AUKUS unacademy.com | Download the Unacademy app",
+      "source": "2 June_AUKUS(DAILY-1MIN).pdf"
+    }
+  ],
+  "retrieved_sources": [
+    "2 June_AUKUS(DAILY-1MIN).pdf"
+  ],
+  "sampled_responses": [
+    "The provided content appears to be repetitive and primarily promotional, encouraging users to download the Unacademy app. There is no substantial information or meaningful content to summarize beyond the promotion of the app.",
+    "The provided content appears to be repetitive advertisements for the Unacademy app, with \"AUKUS\" mentioned alongside the app download links. AUKUS is likely a reference to the trilateral security pact between Australia, the United Kingdom, and the United States. However, in this context, it seems unrelated to the main content, which is promoting the Unacademy app. There is no substantial information to summarize beyond the app promotion.",
+    "The provided content appears to be a repetitive advertisement for the Unacademy app, with multiple instances of the same text, including a reference to \"AUKUS\". However, AUKUS is actually a term that refers to a trilateral security pact between Australia, the United Kingdom, and the United States. In this context, its relevance is unclear. The main takeaway is that the content is promoting the Unacademy app, but it lacks substantial information."
+  ],
+  "semantic_entropy_score": 0.579,
+  "uncertainty": {
+    "sampled_responses": [
+      "The provided content appears to be repetitive and primarily promotional, encouraging users to download the Unacademy app. There is no substantial information or meaningful content to summarize beyond the promotion of the app.",
+      "The provided content appears to be repetitive advertisements for the Unacademy app, with \"AUKUS\" mentioned alongside the app download links. AUKUS is likely a reference to the trilateral security pact between Australia, the United Kingdom, and the United States. However, in this context, it seems unrelated to the main content, which is promoting the Unacademy app. There is no substantial information to summarize beyond the app promotion.",
+      "The provided content appears to be a repetitive advertisement for the Unacademy app, with multiple instances of the same text, including a reference to \"AUKUS\". However, AUKUS is actually a term that refers to a trilateral security pact between Australia, the United Kingdom, and the United States. In this context, its relevance is unclear. The main takeaway is that the content is promoting the Unacademy app, but it lacks substantial information."
+    ],
+    "num_clusters": 2,
+    "semantic_entropy_score": 0.579,
+    "confidence": 0.421,
+    "is_consistent": false,
+    "majority_answer": "The provided content appears to be repetitive advertisements for the Unacademy app, with \"AUKUS\" mentioned alongside the app download links. AUKUS is likely a reference to the trilateral security pact between Australia, the United Kingdom, and the United States. However, in this context, it seems unrelated to the main content, which is promoting the Unacademy app. There is no substantial information to summarize beyond the app promotion."
+  },
+  "contested_topic": false,
+  "crew_output": {
+    "fact_check": "The draft answer is accurate as it correctly identifies the content as repetitive advertisements for the Unacademy app with a mention of \"AUKUS\" that seems unrelated to the main content. The evidence provided, which includes repeated links to download the Unacademy app alongside mentions of \"AUKUS\", supports this assessment. The answer does not contain any factual errors and aligns with the information given in the evidence.",
+    "skeptic_review": "The draft answer appears to be solid, as it accurately describes the content as repetitive advertisements for the Unacademy app with an unrelated mention of \"AUKUS\". There are no apparent factual errors or oversimplifications in the answer, and it aligns with the provided evidence. The answer holds up as a correct summary of the given content.",
+    "final_verdict": "The provided content appears to be repetitive advertisements for the Unacademy app, with \"AUKUS\" mentioned alongside the app download links. AUKUS is likely a reference to the trilateral security pact between Australia, the United Kingdom, and the United States. However, in this context, it seems unrelated to the main content, which is promoting the Unacademy app. There is no substantial information to summarize beyond the app promotion."
+  }
+}

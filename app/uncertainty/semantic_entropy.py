@@ -11,7 +11,6 @@ import math
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
 from groq import Groq
-
 from app.config import (
     GROQ_API_KEY,
     GROQ_MODEL,
@@ -19,18 +18,13 @@ from app.config import (
     NUM_SAMPLES,
     SAMPLE_TEMPERATURE,
 )
-
 _client = None
 _embedder = None
-
-
 def get_client():
     global _client
     if _client is None:
         _client = Groq(api_key=GROQ_API_KEY)
     return _client
-
-
 def get_embedder():
     global _embedder
     if _embedder is None:
